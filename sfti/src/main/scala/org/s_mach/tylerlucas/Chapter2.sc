@@ -1,10 +1,12 @@
 import org.s_mach.tylerlucas.Chapter2
 import math.sqrt
-
+/*
+Chapter 2 Practice
+ */
 Chapter2.signum(-43)
 Chapter2.signum(100)
 Chapter2.signum(0)
-//Chapter2.fac(5)
+
 val x, y = 5
 val x0, y0 = 0
 val distance = {
@@ -18,7 +20,7 @@ for(j <- 1 to 5) {
 }
 println(z)
 for (i <- 1 to 3; j <- 1 to 3 if i != j){print(i+""+j+" ")}
-//Chapter2.sum(1,2,3,4)
+
 def abs(x: Double) = {
   if (x >= 0) x else -x
 }
@@ -33,6 +35,9 @@ def sum(args: Int*) = {
   res
 }
 
+/*
+Chapter 2 Exercises
+ */
 fac(5)
 sum(3,3,3,3)
 abs(-5)

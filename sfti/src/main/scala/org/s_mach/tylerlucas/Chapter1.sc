@@ -15,6 +15,9 @@ val hello = "Hello"
 val res = hello.distinct
 println(res)
 hello(4)
+/*
+Chapter 1 Exercises
+ */
 //1. What methods can be applied to a typed 3?
 //A: type converters (toDouble, toChar, etc),
 // arithmetic ops, bit ops
