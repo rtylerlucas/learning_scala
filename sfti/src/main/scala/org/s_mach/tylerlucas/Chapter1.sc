@@ -1,10 +1,11 @@
 import org.s_mach.tylerlucas.Chapter1
-
+import BigInt._
+import util.Random
 //REPL Exercises Tyler Lucas
 println("hey world")
 val a = 1+2
 2+3
-Chapter1.question1()
+val text = Chapter1.question1()
 val answer = 42
 var counter = 0
 counter += 1
@@ -30,13 +31,22 @@ hello(4)
 
 //6. BigInt(2).pow(1024)
 
-//7. Import BigInt._ and util.Random to use
-// probablePrime(100, Random)
+//7. import BigInt._ and util.Random to process:
+probablePrime(100, Random)
 
-//9. "hello"(0) gives first char or "hello".take(1),
-// "hello".takeRight(1) gives last char
+//8. produce rand BigInt and convert to base 36:
+probablePrime(100, Random).toString(36)
+
+//9.
+"hello"(0)
+//gives first char or "hello".take(1) using the apply method
+"hello".takeRight(1)
+//gives last char
 
 //10. take, drop, takeRight, dropRight return n values of list object
 //ex:
 val list = Array(1,2,3,4)
 list.take(2) //returns first 2 in list
+list.drop(2)
+list.takeRight(2)
+list.dropRight(2)
