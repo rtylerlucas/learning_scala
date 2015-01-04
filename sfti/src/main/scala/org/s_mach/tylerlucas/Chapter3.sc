@@ -3,6 +3,7 @@
  */
 import scala.collection.mutable.ArrayBuffer
 import util.Random
+import java.awt.datatransfer._
 
 val nums = new Array[Int](10)
 nums(5) = 11
@@ -83,5 +84,14 @@ val avg = doubArray.sum / doubArray.length
 a.sortWith(_ > _)
 //7. remove dubs of array
 a.distinct
-
-
+//8.
+//9. Clean and sort all timezones
+val timeZones = java.util.TimeZone.getAvailableIDs
+val cleaned = for(zone <- timeZones) yield {
+    if(zone.contains("America/")) zone.drop(8)
+    else zone
+}
+cleaned.sorted
+//10. SystemFlavorMap
+//val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+//flavors.getNativesForFlavor(DataFlavor.imageFlavor)
