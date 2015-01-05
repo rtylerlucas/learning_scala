@@ -2,6 +2,11 @@
  * Chapter 4 SFTI Practice [ Tyler Lucas ]
  */
 
+import java.io.File
+import java.util.Scanner
+import scala.collection.JavaConversions.mapAsScalaMap
+
+
 val scores = Map("Tyler" -> 10, "Justin" -> 9)  //immutable
 val dynamicScores = scala.collection.mutable.Map("Tyler" -> 11, "Justin" -> 4)
 scores("Tyler")
@@ -29,3 +34,71 @@ val counts = Array(1,4,1)
 val pairs = symbols.zip(counts)
 for ((s,c) <- pairs) print(s*c)
 
+/*
+ * Chp. 4 Exercises
+ */
+//1. Map of prices for # gizmos I covet. Next, produce second map with
+//same keys but prices at 10% discount
+val covetedGizmos = Map("Piano" -> 500, "German Shepherd" -> 400, "Groceries" -> 100)
+val discountGizmos = for((gizmo, price) <- covetedGizmos) yield (gizmo -> price*.9)
+
+//2. Read from file. map words to word count
+val words = collection.mutable.Map[String, Int]()
+val input = new Scanner(new File("/Users/RTylerLucas/learning_scala/sfti/C4E2.txt"))
+
+while(input.hasNext()) {
+  val key = input.next()
+  val value = words.getOrElse(key,0)
+  words(key) = value + 1
+}
+input.close()
+print(words.toString())
+
+//3. Preceding exercise with immutable map
+var hardWords = Map[String, Int]()
+val newInput = new Scanner(new File("/Users/RTylerLucas/learning_scala/sfti/C4E2.txt"))
+
+while(newInput.hasNext()) {
+  val key = newInput.next()
+  hardWords = hardWords + (key -> (hardWords.getOrElse(key,0) + 1))
+}
+newInput.close()
+print("Immutable: " + hardWords.toString())
+//4. Preceding exercise with sorted map
+var sortedWords = collection.immutable.SortedMap[String, Int]()
+val sInput = new Scanner(new File("/Users/RTylerLucas/learning_scala/sfti/C4E2.txt"))
+
+while(sInput.hasNext()) {
+  val key = sInput.next()
+  sortedWords = sortedWords + (key -> (sortedWords.getOrElse(key,0) + 1))
+}
+sInput.close()
+print("sorted: " + sortedWords.toString())
+//5. adapt java tree map to mutable scala map
+var treeWords: collection.mutable.Map[String, Int] = new java.util.TreeMap[String, Int]
+val treeInput = new Scanner(new File("/Users/RTylerLucas/learning_scala/sfti/C4E2.txt"))
+
+while(treeInput.hasNext()) {
+  val key = treeInput.next()
+  treeWords = treeWords + (key -> (treeWords.getOrElse(key,0) + 1))
+}
+treeInput.close()
+print("Tree: " + hardWords.toString())
+//6. Create linked hashmap for days of week. demonstrate insertion order
+val days = collection.mutable.LinkedHashMap(
+  "Monday" -> java.util.Calendar.MONDAY,
+  "Tuesday" -> java.util.Calendar.TUESDAY,
+  "Wednesday" -> java.util.Calendar.WEDNESDAY,
+  "Thursday" -> java.util.Calendar.THURSDAY,
+  "Friday" -> java.util.Calendar.FRIDAY,
+  "Saturday" -> java.util.Calendar.SATURDAY,
+  "Sunday" -> java.util.Calendar.SUNDAY)
+for ((k, v) <- days) println(k)
+//8. write a minMax func that returns pair of minMax
+def minMax(arr: Array[Int]) = {
+  (arr.max, arr.min)
+}
+minMax(Array(10,5,0,-100,3,7, 14))
+
+//10. Give use case for "Hello".zip("World")?
+"ABCD".zip("abcd")

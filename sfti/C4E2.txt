@@ -1,0 +1,1 @@
+This is a random text file used for exercise 2 in Chapter 4 of Scala For The Impatient. Scala is a great langauge. 
