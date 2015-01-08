@@ -3,9 +3,7 @@ import math.sqrt
 /*
 Chapter 2 Practice
  */
-Chapter2.signum(-43)
-Chapter2.signum(100)
-Chapter2.signum(0)
+
 
 val x, y = 5
 val x0, y0 = 0
@@ -20,7 +18,6 @@ for(j <- 1 to 5) {
 }
 println(z)
 for (i <- 1 to 3; j <- 1 to 3 if i != j){print(i+""+j+" ")}
-
 def abs(x: Double) = {
   if (x >= 0) x else -x
 }
@@ -38,16 +35,19 @@ def sum(args: Int*) = {
 /*
 Chapter 2 Exercises
  */
+//1. Signum
+Chapter2.signum(-43)
+Chapter2.signum(100)
+Chapter2.signum(0)
 fac(5)
 sum(3,3,3,3)
 abs(-5)
 //2. empty block exp is type Unit with value ()
-
-//3.
+//3.when in scala is x = y = 1 valid?
 var d: Unit = Unit
 var f = 0
 d = f = 1
-
+println(d + " " + f)
 //4.
 for(i<-10 to 0 by -1){
   println(i)
@@ -59,7 +59,6 @@ def countdown(n: Int)= {
   for(i <- n to 0 by count) println(i)
 }
 countdown(-5)
-
 //6. & 8 //same thing basically
 def product(str: String) = {
   var product = 1L
@@ -67,12 +66,10 @@ def product(str: String) = {
   product
 }
 product("Hello")
-
 //7. Foldleft is this awesome function that can simplify sequential
 //calculations on collections. In this example, it runs through each
 //value in 'Hello' and multiplies the uni vals.
 "Hello".foldLeft(1L) (_*_)
-
  //9. recursive version
  def productRec(str: String): Long = {
    if(str=="") 1L
@@ -80,3 +77,22 @@ product("Hello")
      str.head.toInt * productRec(str.drop(1))
  }
 productRec("Hello")
+//10. compute x^n where n is integer using given recursive func.
+def powerFunc(x: Double, n: Int): Double = {
+  if(n==0) 1
+  else{
+    if(n>0){
+      if(n%2!=0){//odd & positive
+        x * powerFunc(x,n-1)
+      }
+      else{ //even & pos
+        powerFunc(powerFunc(x,(n/2)),2)
+      }
+    }
+    else{ //negative
+      ( 1 / powerFunc(x,(-1 * n)) )
+    }
+  }
+}
+
+println(powerFunc(1,2))

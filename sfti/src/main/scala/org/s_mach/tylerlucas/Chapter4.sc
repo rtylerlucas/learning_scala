@@ -98,6 +98,21 @@ def minMax(arr: Array[Int]) = {
   (arr.max, arr.min)
 }
 minMax(Array(10,5,0,-100,3,7, 14))
-
+//9. return pair containing count of less than, equal to, and > than v
+def relationFunc(values: Array[Int], v: Int) = {
+  var negCount = 0
+  var posCount = 0
+  var equalCount = 0
+  for(value<-values) {
+    if(value>v){
+      posCount+=1
+    }
+    else{
+      if(value==v) equalCount=1
+      else negCount+=1
+    }
+  }
+  (negCount, equalCount, posCount)
+}
 //10. Give use case for "Hello".zip("World")?
 "ABCD".zip("abcd")

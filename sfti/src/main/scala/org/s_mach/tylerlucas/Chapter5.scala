@@ -25,15 +25,17 @@ object Chapter5 {
     }
     def current = balance
   }
-//Exercise 3
+//Exercise 3 & 4
   class Time {
     private var hours = 0
     private var minutes = 0
+    private var totalMinutes = 0
 
     def this(hours: Int, minutes: Int) = {
       this()
       if(hours < 24 && hours >= 0){ this.hours = hours }
       if(minutes < 60 && hours >= 0){ this.minutes = minutes }
+      update
     }
     def before(other: Time): Boolean = {
       if((other.hours + (other.minutes/60.0)) > (hours + (minutes/60.0))) true
@@ -42,9 +44,22 @@ object Chapter5 {
     def set(hours: Int, minutes: Int) = {
       if(hours < 24 && hours >= 0){ this.hours = hours }
       if(minutes < 60 && hours >= 0){ this.minutes = minutes }
+      update
     }
     def current: (Int, Int) = (hours, minutes)
+    def update = {
+      totalMinutes = minutes+(hours*60)
+    }
   }
 //Exercise 5
   class Student(@BeanProperty var name: String = "", @BeanProperty var id: Long = 0L) {}
+//6. person class that turns neg ages to 0
+  class Person(val name: String, var age: Int){
+    if(age<0){
+      age = 0
+    }
+    //Exercise 7. Improve person class
+
+  }
 }
+
