@@ -1,4 +1,7 @@
 package org.s_mach.tylerlucas
+
+import javax.print.attribute.standard.PrinterMoreInfoManufacturer
+
 import math.BigInt
 import scala.beans.BeanProperty
 /**
@@ -51,15 +54,36 @@ object Chapter5 {
       totalMinutes = minutes+(hours*60)
     }
   }
-//Exercise 5
+//Exercise 5 , 6 , 7
   class Student(@BeanProperty var name: String = "", @BeanProperty var id: Long = 0L) {}
+
 //6. person class that turns neg ages to 0
   class Person(val name: String, var age: Int){
     if(age<0){
       age = 0
     }
-    //Exercise 7. Improve person class
+    val firstName = name.split(" ")(0)
+    val lastName = name.split(" ")(1)
+  }
+  //Exercise 8,9,10
+  class Car(val manufacturer: String, val model: String) {
+    private var year = -1
+    private var license = ""
 
+    def this(manufacturer: String, model: String, year: Int, license: String) {
+      this(manufacturer, model)
+      this.year = year
+      this.license = license
+
+    }
+    def this(manufacturer: String, model: String, year: Int) {
+      this(manufacturer, model)
+      this.year = year
+    }
+    def this(manufacturer: String, model: String, license: String) {
+      this(manufacturer, model)
+      this.license = license
+    }
   }
 }
 

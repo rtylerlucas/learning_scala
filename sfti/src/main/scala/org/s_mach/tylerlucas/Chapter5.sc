@@ -1,5 +1,5 @@
 import org.s_mach.tylerlucas.Chapter5
-import org.s_mach.tylerlucas.Chapter5.Student
+import org.s_mach.tylerlucas.Chapter5.{Person, Student}
 
 
 //Exercise 1 Test
@@ -28,3 +28,10 @@ watch.current
 
 //Exercise 5 Test
 val student = new Student()
+
+//Exercise 6 & 7 Test
+val person = new Person("Tyler Lucas", 21)
+val name = "Tyler Lucas ".split(" ")
+name(1)
+println(person.firstName)
+
