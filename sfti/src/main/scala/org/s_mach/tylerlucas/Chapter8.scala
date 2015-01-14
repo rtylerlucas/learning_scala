@@ -1,5 +1,8 @@
 package org.s_mach.tylerlucas
 
+import java.awt
+import java.awt.Dimension
+
 /**
  * Created by RTylerLucas on 1/11/15.
  */
@@ -71,7 +74,7 @@ class LabeledPoint(val label: String, override val x: Int, override val y: Int) 
 
 //Ex. 6
 abstract class Shape{
-  def centerPoint
+  def centerPoint: Point
 }
 class Circle(val radius: Int) extends Shape{
   val centerPoint = new Point(0,0)
@@ -79,3 +82,26 @@ class Circle(val radius: Int) extends Shape{
 class Rectangle(val width: Int, val height: Int) extends Shape {
   val centerPoint = new Point(0,0)
 }
+//Ex. 7
+class Square(val corner: Point, width: Int) extends java.awt.Rectangle(new awt.Point(corner.x,corner.y), new Dimension(width,width)) {
+
+  def this() = this(new Point(0,0),0)
+  def this(width: Int) {
+    this(new Point(0,0), width)
+  }
+}
+//Ex. 8
+//Javap command is used to disassemble components of a class, and print to stdout.
+
+//Ex. 9
+class Creature {
+  val range: Int = 0
+  val env: Array[Int] = new Array[Int](range)
+}
+class Ant extends  {
+  override val range = 2
+} with Creature
+//def can only override another def. val can override paramaterless def
+
+//Ex. 10
+// The Protected keyword gives access to otherwise private fields to subclasses and package
