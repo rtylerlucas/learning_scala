@@ -1,3 +1,5 @@
+import java.io.PrintWriter
+
 import org.s_mach.tylerlucas.Chapter9
 
 import scala.io.Source
@@ -13,28 +15,23 @@ source.close
 //Ex 2.
 val chp9 = Chapter9
 chp9.replaceTabs("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E2.txt")
-
 //Ex. 3
 val s3 = Source.fromFile("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E1.txt")
 for(w<- s3.mkString.split("\\s+")) if(w.length > 6) println(w)
 s3.close
-
 //Ex. 4
-val s4 = Source.fromFile("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E4.txt")
-var sum: Double = 0
-var avg: Double = 0
-var count: Int = 0
-var max: Double = 0
-var min: Double = 0
-for(w <- s4.mkString.split("\\n+")) {
-  sum+= w.toDouble
-  count += 1
-  max = Math.max(max, w.toDouble)
-  min = Math.min(min, w.toDouble)
-}
-println("Sum: " + sum)
-println("Avg: " + (sum/count))
-println("Max: " + max)
-println("Min: " + min)
-
-s4.close
+chp9.numAttributes("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E4.txt")
+//Ex. 5
+chp9.powersOfTwo("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E5.txt")
+//Ex. 6
+val s6 = Source.fromFile("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E6.txt")
+val content = s6.mkString
+print(content)
+val pattern = """\s"[a-z\s]+"\s+""".r
+val res = pattern.findAllIn(content).toArray
+s6.close
+//Ex. 7 (not quite done)
+//val s7 = Source.fromFile("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C9E4.txt")
+//val floatPattern = "[0-9]+\\.[0-9]+".r
+//print(floatPattern.findAllIn(s7.mkString.split("\\n").toString).toString())
+//s7.close
