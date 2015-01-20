@@ -51,16 +51,20 @@ trait CryptoLogger extends Logged {
   def encrypt(msg: String): String = {
     var encrypted: String = ""
     for(ch <- msg){
-        val x = (Math.max(caps.indexOf(ch), lower.indexOf(ch)))
-        encrypted += lower((x+shift) % 26)
+        var x = (Math.max(caps.indexOf(ch), lower.indexOf(ch)))
+        x = (x+shift) % 26
+        if (x>25) x -= 26
+        encrypted += lower(x)
     }
     encrypted
   }
   def decrypt(msg: String): String = {
     var decrypted: String = ""
     for(ch <- msg){
-      val x = (Math.max(caps.indexOf(ch), lower.indexOf(ch)))
-      decrypted += lower((x-shift) % 26)
+      var x = (lower.indexOf(ch))
+      x = (x-shift) % 26
+      if (x<0) x += 26
+      decrypted += lower(x)
     }
     decrypted
   }
@@ -70,6 +74,72 @@ trait CryptoLogger extends Logged {
 }
 
 //Ex 5. working on it
-trait PropertyChangeSupport  {
+import java.beans.{PropertyChangeListener, PropertyChangeEvent, PropertyChangeSupport}
+trait PropertyChangeSupportLike  {
+  val javaSupportObj = new PropertyChangeSupport
 
+  def addPropertyChangeListener(listener: PropertyChangeListener): Unit ={
+    javaSupportObj.addPropertyChangeListener(listener)
+  }
+  def addPropertyChangeListener(name: String, listener: PropertyChangeListener): Unit = {
+    javaSupportObj.addPropertyChangeListener(name, listener)
+  }
+  def fireIndexedPropertyChange(propertyName: String, index: Int, oldValue: Boolean, newValue: Boolean): Unit = {
+    javaSupportObj.fireIndexedPropertyChange(propertyName,index,oldValue,newValue)
+  }
+  def fireIndexedPropertyChange(propertyName: String, index: Int, oldValue: Int, newValue: Int): Unit = {
+    javaSupportObj.fireIndexedPropertyChange(propertyName,index,oldValue,newValue)
+  }
+  def fireIndexedPropertyChange(propertyName: String, index: Int, oldValue: Object, newValue: Object): Unit = {
+    javaSupportObj.fireIndexedPropertyChange(propertyName,index,oldValue,newValue)
+  }
+  def firePropertyChange(event: PropertyChangeEvent): Unit ={
+    javaSupportObj.firePropertyChange(event)
+  }
+  def firePropertyChange(name: String, oldValue: Boolean, newValue: Boolean): Unit ={
+    javaSupportObj.firePropertyChange(name, oldValue, newValue)
+  }
+  def firePropertyChange(name: String, oldValue: Object, newValue: Object): Unit ={
+    javaSupportObj.firePropertyChange(name, oldValue, newValue)
+  }
+  def getPropertyChangeListeners(): Array[PropertyChangeListener]  = {
+    javaSupportObj.getPropertyChangeListeners
+  }
+  def getPropertyChangeListeners(name: String): Array[PropertyChangeListener]  = {
+    javaSupportObj.getPropertyChangeListeners(name)
+  }
+  def hasListeners(name: String): Boolean = {
+    javaSupportObj.hasListeners(name)
+  }
+  def removePropertyChangeListener(listener: PropertyChangeListener): Unit = {
+    javaSupportObj.removePropertyChangeListener(listener)
+  }
+  def removePropertyChangeListener(name: String, listener: PropertyChangeListener): Unit = {
+    javaSupportObj.removePropertyChangeListener(name, listener)
+  }
+}
+//Ex. 8
+import java.io.{BufferedInputStream, InputStream}
+trait BufferedInputStreamLike {
+  val inputStream: InputStream
+  val bufferHelperObj = new BufferedInputStream(inputStream)
+
+  def available(): Int = {
+    bufferHelperObj.available
+  }
+  def close(): Unit = {
+    bufferHelperObj.close()
+  }
+  def mark(readLimit: Int): Unit ={
+    bufferHelperObj.mark(readLimit)
+  }
+  def markSupported(): Boolean ={
+   bufferHelperObj.markSupported
+  }
+  def read(b: Array[Byte], off: Int, len: Int): Unit ={
+    bufferHelperObj.read(b,off,len)
+  }
+  def reset(): Unit ={
+    bufferHelperObj.reset()
+  }
 }
