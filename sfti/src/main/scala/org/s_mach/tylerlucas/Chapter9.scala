@@ -1,7 +1,7 @@
 package org.s_mach.tylerlucas
 
 import java.io.{PrintWriter, File}
-
+import java.net.URL
 import scala.io.Source
 /**
  * Created by RTylerLucas on 1/15/15.
@@ -52,4 +52,22 @@ object Chapter9 {
     val content: Array[String] = source.mkString.split("\"")
     for(w <- content) println(w)
   }
+  //Ex. 8
+  def findSrcAttributes(url: String): Unit = {
+    val webpage = io.Source.fromURL(new URL(url)).mkString
+    val pattern = """<img src="[^\s-]+""".r
+    val imgtags = pattern.findAllIn(webpage)
+    for(img <- imgtags) println(img.toString)
+
+  }
+  //Ex. 9 Count class files
+  import java.io.File
+  def subdirs(directory: File): Iterator[File] = {
+    val children = directory.listFiles.filter(_.isDirectory)
+    children.toIterator ++ children.toIterator.flatMap(subdirs _)
+  }
+  //still working
+//  def countClassFiles(directory: File): Int = {
+//    for(d <- subdirs(directory)) if d.
+//  }
 }
