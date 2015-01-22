@@ -65,7 +65,7 @@ object Chapter5 {
     val firstName = name.split(" ")(0)
     val lastName = name.split(" ")(1)
   }
-  //Exercise 8,9,10
+  //Exercise 8,9
   class Car(val manufacturer: String, val model: String) {
     private var year = -1
     private var license = ""
@@ -85,5 +85,12 @@ object Chapter5 {
       this.license = license
     }
   }
+
+  //Ex. 10
+  class Employee(val name: String, var salary: Double){
+    def this() { this("John Q. Public", 0.0) }
+  }
+  //TechEmployee is shorter, and cleaner IMO
+  class TechEmployee(val name: String = "John Q. Public", var salary: Int = 0.0){}
 }
 

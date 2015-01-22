@@ -1,4 +1,5 @@
 import org.s_mach.tylerlucas
+import org.s_mach.tylerlucas.Chapter6.PlayingCard._
 import org.s_mach.tylerlucas.{Chapter6, Chapter5}
 
 object Origin extends java.awt.Point
@@ -28,3 +29,12 @@ val word = Reverse.main(Array("Hello", "World"))
 println(word)
 val chp6 = Chapter6
 chp6.PlayingCard.Heart.toString
+
+//Ex. 7
+val heartcard = chp6.PlayingCard.Heart
+
+def checkColor(card: PlayingCard): String = {
+  if (card == Heart || card == Diamond) "Red"
+  else "Black"
+}
+checkColor(heartcard)

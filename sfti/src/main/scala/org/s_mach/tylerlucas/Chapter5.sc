@@ -28,6 +28,7 @@ watch.current
 
 //Exercise 5 Test
 val student = new Student()
+student.getId
 
 //Exercise 6 & 7 Test
 val person = new Person("Tyler Lucas", 21)

@@ -82,17 +82,19 @@ def powerFunc(x: Double, n: Int): Double = {
   if(n==0) 1
   else{
     if(n>0){
-      if(n%2!=0){//odd & positive
-        x * powerFunc(x,n-1)
+      if(n%2==0 & n > 2){
+        //even & pos
+        powerFunc(powerFunc(x, n / 2), 2)
       }
-      else{ //even & pos
-        powerFunc(powerFunc(x,(n/2)),2)
+      else {
+        //odd & positive
+        x * powerFunc(x,n-1)
       }
     }
     else{ //negative
-      ( 1 / powerFunc(x,(-1 * n)) )
+       1 / powerFunc(x,-n)
     }
   }
 }
 
-println(powerFunc(1,2))
+powerFunc(1,2)

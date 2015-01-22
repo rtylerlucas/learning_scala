@@ -49,12 +49,27 @@ object Chapter6 {
     else println("Empty Args!")
 
   }
+
+  //Ex. 6
   object PlayingCard extends Enumeration {
     type PlayingCard = Value
     val Heart = Value(0, "\u2665")
     val Spade = Value(1, "\u2660")
     val Diamond = Value(2, "\u2666")
     val Club = Value(3, "\u2663")
+
   }
 
+  //Ex. 8
+  object RGBCorner extends Enumeration {
+    type RGBCorner = Value
+    val Red = Value(0xFF0000)
+    val Green = Value(0x00FF00)
+    val Blue = Value (0x0000FF)
+    val Yellow = Value(0xFFFF00)
+    val Magenta = Value(0xFF00FF)
+    val Cyan = Value(0x00FFFF)
+    val White = Value(0xFFFFFF)
+    val Black = Value(0x000000)
+  }
 }

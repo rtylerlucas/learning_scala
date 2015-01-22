@@ -44,16 +44,16 @@ val discountGizmos = for((gizmo, price) <- covetedGizmos) yield (gizmo -> price*
 
 //2. Read from file. map words to word count
 val words = collection.mutable.Map[String, Int]()
-val textFile = new File("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org.s_mach.tylerlucas/C4E2.txt")
+val textFile = new File("/Users/RTylerLucas/learning_scala/sfti/src/main/scala/org/s_mach/tylerlucas/C4E2.txt")
 val input = new Scanner(textFile)
 
 while(input.hasNext()) {
   val key = input.next()
-  val value = words.getOrElse(key,0)
-  words(key) = value + 1
+  words(key) = words.getOrElse(key,0) + 1
 }
 input.close()
 print(words.toString())
+
 //3. Preceding exercise with immutable map
 var hardWords = Map[String, Int]()
 val newInput = new Scanner(textFile)
@@ -63,6 +63,8 @@ while(newInput.hasNext()) {
 }
 newInput.close()
 print("Immutable: " + hardWords.toString())
+
+
 //4. Preceding exercise with sorted map
 var sortedWords = collection.immutable.SortedMap[String, Int]()
 val sInput = new Scanner(textFile)
@@ -73,6 +75,7 @@ while(sInput.hasNext()) {
 }
 sInput.close()
 print("sorted: " + sortedWords.toString())
+
 //5. adapt java tree map to mutable scala map
 var treeWords: collection.mutable.Map[String, Int] = new java.util.TreeMap[String, Int]
 val treeInput = new Scanner(textFile)
