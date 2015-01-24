@@ -91,6 +91,6 @@ object Chapter5 {
     def this() { this("John Q. Public", 0.0) }
   }
   //TechEmployee is shorter, and cleaner IMO
-  class TechEmployee(val name: String = "John Q. Public", var salary: Int = 0.0){}
+  class TechEmployee(val name: String = "John Q. Public", var salary: Double = 0.0){}
 }
 

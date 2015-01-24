@@ -29,7 +29,6 @@ val word = Reverse.main(Array("Hello", "World"))
 println(word)
 val chp6 = Chapter6
 chp6.PlayingCard.Heart.toString
-
 //Ex. 7
 val heartcard = chp6.PlayingCard.Heart
 
