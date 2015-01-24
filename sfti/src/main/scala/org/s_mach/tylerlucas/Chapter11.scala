@@ -42,9 +42,3 @@ class Fraction (n: Int, d: Int){
 
   override def toString: String = num + " / " + den
 }
-//Ex. 4 M o n e y
-class Money(var dollar: Int, var cents: Int){
-  if(cents > 100) dollar = dollar + (cents / 100); cents = cents % 100
-  var centString = "0."+cents
-  override def toString = "$" + dollar + "." + centString.toFloat.formatted("%.2f")
-}
