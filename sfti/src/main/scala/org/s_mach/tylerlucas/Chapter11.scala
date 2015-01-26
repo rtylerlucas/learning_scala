@@ -1,4 +1,5 @@
 package org.s_mach.tylerlucas
+import java.lang.Long
 
 /**
  * Created by RTylerLucas on 1/23/15.

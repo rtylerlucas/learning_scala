@@ -9,6 +9,7 @@
 
 //Ex. 3 Test
 import org.s_mach.tylerlucas.{Fraction}
+import scala.collection.mutable
 val fiveOverFour = new Fraction(5,4)
 //subtract
 val res = (fiveOverFour - new Fraction(3,4))
@@ -102,13 +103,14 @@ object ASCIIArt {
   }
 
   def drawHelloScala: Array[String] = {
-    for (str <- helloScala) println(str);
+    for (str <- helloScala) println(str)
     helloScala
   }
 
 }
-class ASCIIArt(val arrayArt: Array[String] = Array("""    /\/\""", """  ( ^ ^ )""", """  |v   v|""", """   B___B""")){
 
+//Ex. 6
+class ASCIIArt(val arrayArt: Array[String] = Array("""    /\/\""", """  ( ^ ^ )""", """  |v   v|""", """   B___B""")){
   def + (arr: Array[String]): Unit = {
     for (w <- 0 to Math.max(arr.length - 1,arrayArt.length - 1) ){
       if(w != arr.length && w!= arrayArt.length ) println(arrayArt(w) + " " + arr(w))
@@ -118,6 +120,13 @@ class ASCIIArt(val arrayArt: Array[String] = Array("""    /\/\""", """  ( ^ ^ )"
           if(w >= arr.length) println(arrayArt(w))
 
     }
+  }
+  def draw(arr: Array[String]): Unit ={
+    for(str <- arr) println(str)
+  }
+  def v (arr: Array[String]): Unit = {
+    draw(arrayArt)
+    draw(arr)
   }
 }
 //working on class integration for adding method
@@ -132,4 +141,14 @@ val catHello = new ASCIIArt()
 catHello + helloScala
 val helloCat = new ASCIIArt(helloScala)
 helloCat + catHello.arrayArt
-
+catHello v helloScala
+//Ex. 7 need work on update and apply
+import java.lang.Long
+class BitSequence(val sequence: Long = 0L){
+  val binaryString = Long.toBinaryString(sequence)
+  def update(index: Int, value: Boolean): Unit ={
+  }
+  override def toString: String = "%64s".format(binaryString).replaceAll(" ", "0")
+}
+val x = new BitSequence(343L)
+Long.parseLong(x.toString)
