@@ -105,6 +105,20 @@ object ASCIIArt {
     for (str <- helloScala) println(str);
     helloScala
   }
+
+}
+class ASCIIArt(val arrayArt: Array[String] = Array("""    /\/\""", """  ( ^ ^ )""", """  |v   v|""", """   B___B""")){
+
+  def + (arr: Array[String]): Unit = {
+    for (w <- 0 to Math.max(arr.length - 1,arrayArt.length - 1) ){
+      if(w != arr.length && w!= arrayArt.length ) println(arrayArt(w) + " " + arr(w))
+      else
+        if(w >= arrayArt.length) println((" " * (arrayArt(arrayArt.length-1).length+1)) + arr(w))
+        else
+          if(w >= arr.length) println(arrayArt(w))
+
+    }
+  }
 }
 //working on class integration for adding method
 //  class ASCIIArt(artType: String) {
@@ -112,4 +126,10 @@ object ASCIIArt {
 //    if(artType.contains("cat")) this.cat
 //}
 ASCIIArt.drawCat
-ASCIIArt.drawHelloScala
+//ASCIIArt.drawHelloScala
+val helloScala: Array[String] = Array("""  -----""", """/ Hello \""", """< Scala |""", """\ Coder /""", """  -----""")
+val catHello = new ASCIIArt()
+catHello + helloScala
+val helloCat = new ASCIIArt(helloScala)
+helloCat + catHello.arrayArt
+
