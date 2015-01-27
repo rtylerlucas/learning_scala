@@ -1,3 +1,4 @@
+import java.lang.Long
 //Ex. 1 Precedence
 3 + 4 + 6 -> 5 //performs addition on left, then assigns right to left
 //3 -> 4 + 5 breaks
@@ -129,26 +130,45 @@ class ASCIIArt(val arrayArt: Array[String] = Array("""    /\/\""", """  ( ^ ^ )"
     draw(arr)
   }
 }
-//working on class integration for adding method
-//  class ASCIIArt(artType: String) {
-//  val artArr = {
-//    if(artType.contains("cat")) this.cat
-//}
+
 ASCIIArt.drawCat
-//ASCIIArt.drawHelloScala
 val helloScala: Array[String] = Array("""  -----""", """/ Hello \""", """< Scala |""", """\ Coder /""", """  -----""")
 val catHello = new ASCIIArt()
 catHello + helloScala
 val helloCat = new ASCIIArt(helloScala)
 helloCat + catHello.arrayArt
 catHello v helloScala
-//Ex. 7 need work on update and apply
-import java.lang.Long
-class BitSequence(val sequence: Long = 0L){
-  val binaryString = Long.toBinaryString(sequence)
-  def update(index: Int, value: Boolean): Unit ={
+
+
+"hello".updated(0,'t')
+
+//Ex. 7 (got it, finally)
+class BitSequence(private var sequence: Long = 0L){
+  private def booleanToChar( value: Boolean): Char = {
+    if(value) '1' else '0'
   }
-  override def toString: String = "%64s".format(binaryString).replaceAll(" ", "0")
+  //updates from indexed binary positions, NOT index of string position
+  def update(index: Int, value: Boolean): Boolean ={
+    if(index<64 && index >=0){
+      var updatedString = this.toString.updated(63-index, booleanToChar(value))
+      sequence = Long.parseLong(updatedString,2)
+      true
+    }
+    else
+      false
+  }
+  def getSequence: Long = sequence
+  override def toString: String = "%64s".format(Long.toBinaryString(sequence)).replaceAll(" ", "0")
 }
-val x = new BitSequence(343L)
-Long.parseLong(x.toString)
+object BitSequence{
+  def apply(sequence: Long): BitSequence = {
+    new BitSequence(sequence)
+  }
+}
+//Apply Test
+val x = new BitSequence(34388998L)
+val y = BitSequence(343L)
+//Update Test
+y(0) = false
+y.toString
+y(0) = true
