@@ -138,10 +138,7 @@ catHello + helloScala
 val helloCat = new ASCIIArt(helloScala)
 helloCat + catHello.arrayArt
 catHello v helloScala
-
-
 "hello".updated(0,'t')
-
 //Ex. 7 (got it, finally)
 class BitSequence(private var sequence: Long = 0L){
   private def booleanToChar( value: Boolean): Char = {
@@ -172,3 +169,74 @@ val y = BitSequence(343L)
 y(0) = false
 y.toString
 y(0) = true
+
+//Ex. 8
+class Matrix(val row: Int = 2, val col: Int = 2){
+
+  private var mat = Array.ofDim[Int](row,col)
+
+
+  def update(x: Int, y: Int, newVal: Int) = mat(x)(y) = newVal
+  def apply(x: Int, y: Int): Int = mat(x)(y)
+
+
+  def + (addedMat: Matrix) : Matrix = {
+    if(row == addedMat.row && col == addedMat.col){
+      var newMat = new Matrix(row,col)
+      for(x <- 0 until row){
+        for(y<- 0 until col){
+          newMat(x,y) = mat(x)(y) + addedMat.mat(x)(y)
+        }
+      }
+      newMat
+    }
+    else null
+  }
+  def * (multMat: Matrix) : Matrix = {
+    if(col == multMat.row){
+      var newMat = new Matrix(row, multMat.col)
+      for(x <- 0 until row){
+        for(mY <- 0 until multMat.col){
+          var sum = 0
+          for(ry<-0 until col){
+            sum = sum + mat(x)(ry)* multMat(ry,mY)
+          }
+          newMat(x,mY) = sum
+        }
+      }
+      newMat
+    }
+    else null
+  }
+
+  override def toString: String = {
+    var res = ""
+    for(x<- 0 until row){
+      res += ("\n\n | ")
+      for(y<-0 until col){
+        res += "%03d ".format(mat(x)(y))
+      }
+     res += "| \n"
+    }
+    res
+  }
+}
+
+val testMat = new Matrix(2,3)
+testMat(0,0) = 1
+testMat(0,1) = 2
+testMat(0,2) = 3
+testMat(1,0) = 4
+testMat(1,1) = 5
+testMat(1,2) = 6
+
+val testMat2 = new Matrix(3,2)
+testMat2(0,0) = 7
+testMat2(1,0) = 9
+testMat2(2,0) = 11
+testMat2(0,1) = 8
+testMat2(1,1) = 10
+testMat2(2,1) = 12
+
+val addTest = testMat + testMat
+val multTestMat = testMat * testMat2
