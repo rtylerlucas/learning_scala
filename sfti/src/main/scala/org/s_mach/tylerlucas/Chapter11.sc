@@ -240,3 +240,10 @@ testMat2(2,1) = 12
 
 val addTest = testMat + testMat
 val multTestMat = testMat * testMat2
+
+//Ex. 9 Define unapply() for RichFile class that extracts file pah, name,
+//and extension. For example, the file /home/cay/readme.txt has path
+//.. /home/cay, name readme, and extension .txt
+
+//Ex. 10 Define unapplySeq operation for RichFile class that extracts all path
+//segments. Ex. For /home/cay/readme.txt extract three segments: home, cay, and readme.txt
