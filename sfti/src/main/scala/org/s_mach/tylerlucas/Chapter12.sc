@@ -51,11 +51,33 @@ facFoldLeft(5)
 //Ex. 5 func that yields the largest of a func with given seqs. of input
 //no loop or recursion
 //Example: largest(x => 10 * x- x * x, 1 to 10) should return 25
-//Bug 
 def largest(fun: (Int) => Int, inputs: Seq[Int]) ={
-  inputs.reduceLeft(fun(_) max fun(_))
+  inputs.map(fun(_)).max
 }
-def fun2(x: Int) = x*2
-largest(x => 10 * x - x * x, 1 to 10)
 
-(1 to 10).reduceLeft(fun2(_) max fun2(_))
+largest(x => 10 * x- x * x, 1 to 10)
+//Ex. 6 Modify #5 to return input value
+def largestInput(fun: (Int) => Int, inputs: Seq[Int]) ={
+  inputs(inputs.map(fun(_)).indexOf(largest(fun, inputs)))
+}
+largestInput(x => 10 * x- x * x, 1 to 10)
+//Ex. 7 High Order! Returning a function that applies to pairs
+val pairs = (1 to 10) zip (11 to 20)
+val t = (6 , 7)
+def adjustToPair(fun: (Int, Int) => Int) = (t: (Int,Int)) => {
+  fun(t._1, t._2)
+}
+
+adjustToPair(_*_)(6,7)
+pairs.map(adjustToPair(_+_))
+
+//Ex. 8 Currying
+val a = Array("lngth6","length7","ln3")
+val b = Array(6,7,3)
+a.corresponds(b)(_.length == _)
+
+//Ex. 9
+//Currying allows for more flexibility by
+//returning a high order function
+
+//Ex. 10
