@@ -70,14 +70,23 @@ def adjustToPair(fun: (Int, Int) => Int) = (t: (Int,Int)) => {
 
 adjustToPair(_*_)(6,7)
 pairs.map(adjustToPair(_+_))
-
 //Ex. 8 Currying
 val a = Array("lngth6","length7","ln3")
 val b = Array(6,7,3)
 a.corresponds(b)(_.length == _)
-
 //Ex. 9
 //Currying allows for more flexibility by
 //returning a high order function
 
-//Ex. 10
+//Ex. 10 Control abstraction for 'if' inverted
+//Does infact use currying, curries the block to execute
+def unless(condition: => Boolean)(block: => Unit): Unit ={
+  if(!condition){
+    block
+  }
+}
+
+unless(false == true){
+  println("keep running")
+}
+
