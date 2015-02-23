@@ -1,11 +1,8 @@
 //High Order Functions
 /*
 Functions are "first class citizens"
-
 You can create annonymous functions, usually to give them to other funcs.
-
 A func. argument specifies behavior that should be specified later.
-
 Many collection methods take func. parameters, applying a func. to
 all values of collection.
 
@@ -29,8 +26,12 @@ def values(func: (Int) => Int, low: Int, high: Int) = {
   for(c <- low to high) yield (c, func(c))
 }
 values(x => x * x, -5, 5)
+
+
 //Ex. 2 How to get largest elm of array using reduceLeft?
 val arrMax = Array(3,4,6,11,4).reduceLeft(_ max _)
+
+
 //Ex. 3 Implement factorial function using to and reduceLeft,
 //without loop or recursion.
 def factorial(x: Int) = {
@@ -42,12 +43,21 @@ def factorial(x: Int) = {
 factorial(5)
 5*4*3*2*1
 factorial(-5)
+
+
 //Ex. 4 foldLeft factorial implementation
 //not sure on this one for negative : \
 def facFoldLeft(x: Int) = {
-  (1 to x).foldLeft(1)(_ * _)
+  val init = if(x<0 && x % 2 != 0) -1 else 1
+    (1 to Math.abs(x)).foldLeft(init)(_ * _)
+
+
+
 }
 facFoldLeft(5)
+facFoldLeft(-5)
+
+
 //Ex. 5 func that yields the largest of a func with given seqs. of input
 //no loop or recursion
 //Example: largest(x => 10 * x- x * x, 1 to 10) should return 25
@@ -56,11 +66,15 @@ def largest(fun: (Int) => Int, inputs: Seq[Int]) ={
 }
 
 largest(x => 10 * x- x * x, 1 to 10)
+
+
 //Ex. 6 Modify #5 to return input value
 def largestInput(fun: (Int) => Int, inputs: Seq[Int]) ={
   inputs(inputs.map(fun(_)).indexOf(largest(fun, inputs)))
 }
 largestInput(x => 10 * x- x * x, 1 to 10)
+
+
 //Ex. 7 High Order! Returning a function that applies to pairs
 val pairs = (1 to 10) zip (11 to 20)
 val t = (6 , 7)
@@ -70,10 +84,14 @@ def adjustToPair(fun: (Int, Int) => Int) = (t: (Int,Int)) => {
 
 adjustToPair(_*_)(6,7)
 pairs.map(adjustToPair(_+_))
+
+
 //Ex. 8 Currying
 val a = Array("lngth6","length7","ln3")
 val b = Array(6,7,3)
 a.corresponds(b)(_.length == _)
+
+
 //Ex. 9
 //Currying allows for more flexibility by
 //returning a high order function
