@@ -1,2 +1,2 @@
 # learning_scala
-Repo tracking progress of exercises and notes taken from Scala For The Impatient by Cay S. Horstmann.
+Repo tracking progress of exercises, notes, and solutions from Scala For The Impatient by Cay S. Horstmann.
