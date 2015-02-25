@@ -137,6 +137,23 @@ def twoDim[A](arr: Iterable[A], col: Int) ={
 val a1 = Array(1,2,3,4,5,6)
 twoDim(a1, 3)
 
+//val mathhw = Array(88.5, 98.8, 94.7, 88.3, 84.3, 90.4, 90.1, 91.2, 89.0, 90.6, 89.8, 92.2, 91.6, 87.7, 90.3, 91.1, 90.0, 86.7, 91.5, 93.4, 89.9, 96.1,
+//89.6, 92.2, 90.4, 83.4, 91.6, 91.0, 90.7, 88.2, 88.6, 88.5, 88.3, 93.3, 94.2, 87.4, 85.3, 91.1, 90.1, 90.5, 89.3, 100.3, 91.1, 87.6, 92.7, 88.4, 87.9, 92.6, 93.0, 93.7, 94.4, 96.5, 90.4, 84.3, 91.2, 93.2, 86.7, 88.6, 94.2, 88.7, 90.8, 92.7, 90.1, 89.3, 91.8, 91.0, 87.5, 90.9, 87.8, 89.9, 88.3, 91.8, 89.2, 89.7, 92.3, 92.2, 88.9, 89.8, 92.7, 93.3, 86.7, 91.0)
+//val sortedhw = mathhw.sorted
+//sortedhw.length
+//val top = sortedhw.slice(0,30)
+//val md = sortedhw.slice(30,55)
+//val btm = sortedhw.slice(55,82)
+//for(x<-top)println(x)
+//for(y<-md)println(y)
+//for(y<-btm)println(y)
+
+//Ex. 9
+//concurrently mutating the collection is not safe and
+//can lead to errors in code. It is suggested to use java.util.concurrent collections
+//instead.
+
+
 
 
 
