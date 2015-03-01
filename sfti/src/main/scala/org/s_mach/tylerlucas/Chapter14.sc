@@ -1,3 +1,5 @@
+import com.sun.source.tree.BinaryTree
+
 //Ex.2 write swap that receives pair of Int and
 //returns components reversed
 def swap(tup: (Int, Int)): (Int, Int) = {
@@ -58,5 +60,60 @@ Item.price(chair)
 Item.price(tv)
 Item.price(tvChairCombo)
 Item.price(chairs)
-
 //Ex.5
+def listSum(list: List[Any]) = {
+  val f = (i: Any) => i match{
+    case i: List[Int] => i.sum
+    case i: Int => i
+    case _ => 0
+  }
+
+  list.reduceLeft(f(_) + f(_))
+
+}
+val list = List[Any](List[Int](3, 8), 2, List[Int](5))
+listSum(list)
+//Ex. 6 & //Ex. 7 Repeat ex 6 but allow for arbitrary number of children
+
+
+sealed abstract class BTree
+case class Leaf(value: Int) extends BTree
+case class Node(left: BTree, right: BTree) extends BTree
+case class KidNode(children: BTree*) extends BTree
+def leafSum(bt: BTree): Int = {
+  bt match{
+    case bt: Leaf => bt.value
+    case bt: Node => (leafSum(bt.left) + leafSum(bt.right))
+    case bt: KidNode =>
+      bt.children.foldLeft(0)(((r: Int,c: BTree) => r+leafSum(c)))
+  }
+}
+//Ex. 6 Test
+val btree = Node(Node(Leaf(3), Leaf(8)), Leaf(2))
+leafSum(btree)
+//Ex. 7 Test
+val binaryKidTree = KidNode(Node(Leaf(3), Leaf(8)), Leaf(2), KidNode(Leaf(5)))
+leafSum(binaryKidTree)
+//Ex. 8 extend tree in last ex. so each nonleaf node stores an operator
+//in addition to their child nodes. Write a func eval that computes the value
+trait NonLeaf {
+  def operator: String
+}
+sealed abstract class BTreePlus
+case class LeafPlus(value: Int) extends BTreePlus
+case class NodePlus(operator: String, children: BTreePlus*) extends BTreePlus with NonLeaf
+
+def treeOps(bt: BTreePlus): Int = {
+  bt match{
+    case bt: LeafPlus => bt.value
+    case bt: NodePlus => bt.operator match {
+      case "+" => bt.children.foldLeft(0)(((r: Int,c: BTreePlus) => r+treeOps(c)))
+      case "-" => bt.children.foldLeft(0)(((r: Int,c: BTreePlus) => r-treeOps(c)))
+      case "*" => bt.children.foldLeft(1)(((r: Int,c: BTreePlus) => r*treeOps(c)))
+      case "/" => bt.children.foldLeft(1)(((r: Int,c: BTreePlus) => r/treeOps(c)))
+      case _ => 0
+    }
+  }
+}
+val bTreePlus = NodePlus("+", NodePlus("*", LeafPlus(3), LeafPlus(8)), LeafPlus(2), NodePlus("-", LeafPlus(5)))
+treeOps(bTreePlus)
