@@ -1,3 +1,4 @@
+import com.sun.deploy.security.MozillaJSSDSASignature.NONEwithDSA
 import com.sun.source.tree.BinaryTree
 
 //Ex.2 write swap that receives pair of Int and
@@ -102,7 +103,6 @@ trait NonLeaf {
 sealed abstract class BTreePlus
 case class LeafPlus(value: Int) extends BTreePlus
 case class NodePlus(operator: String, children: BTreePlus*) extends BTreePlus with NonLeaf
-
 def treeOps(bt: BTreePlus): Int = {
   bt match{
     case bt: LeafPlus => bt.value
@@ -117,3 +117,35 @@ def treeOps(bt: BTreePlus): Int = {
 }
 val bTreePlus = NodePlus("+", NodePlus("*", LeafPlus(3), LeafPlus(8)), LeafPlus(2), NodePlus("-", LeafPlus(5)))
 treeOps(bTreePlus)
+//Ex. 9
+def nonNoneSums(list: List[Option[Int]]): Int = {
+  val f = (i: Option[Int]) => i match {
+    case Some(i) => i
+    case None => 0
+  }
+  list.foldLeft(0)((b, a) => b+f(a))
+}
+def nonNoneSums2(list: List[Option[Int]]): Int = {
+  list.map(_.getOrElse(0)).sum
+}
+
+val listNum9 = List[Option[Int]](Some(1),None,Some(2), Some(4))
+nonNoneSums(listNum9)
+nonNoneSums2(listNum9)
+
+//Ex. 10
+def compose(f1: Double => Option[Double], f2: Double => Option[Double]): Double => Option[Double]  ={
+  (x: Double) => f2(x) match{
+    case Some(x) => f1(x)
+    case None => None
+  }
+}
+def f(x: Double) = if(x>=0) Some(Math.sqrt(x)) else None
+def g(x: Double) = if(x!=1) Some (1 / (x-1)) else None
+
+val h = compose (f,g)
+h(20)
+h(2)
+h(1)
+h(0)
+
